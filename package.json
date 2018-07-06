@@ -1,0 +1,24 @@
+{
+  "name": "ng-classifieds",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chupacabreh/ng-classifieds.git"
+  },
+  "author": "Matt Freitas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chupacabreh/ng-classifieds/issues"
+  },
+  "homepage": "https://github.com/chupacabreh/ng-classifieds#readme",
+  "dependencies": {
+    "angular": "^1.7.2",
+    "angular-material": "^1.1.10",
+    "mdi": "^2.2.43"
+  }
+}
