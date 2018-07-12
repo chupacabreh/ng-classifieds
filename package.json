@@ -18,7 +18,10 @@
   "homepage": "https://github.com/chupacabreh/ng-classifieds#readme",
   "dependencies": {
     "angular": "^1.7.2",
+    "angular-animate": "^1.7.2",
+    "angular-aria": "file:node_modules/angular-aria",
     "angular-material": "^1.1.10",
+    "angular-messages": "^1.7.2",
     "mdi": "^2.2.43"
   }
 }

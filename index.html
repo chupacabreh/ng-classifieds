@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ngClassifieds</title>
+	<link rel="stylesheet" href="node_modules/angular-material/angular-material.css">
+	<link href="node_modules/mdi/css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body ng-app="ngClassifieds" ng-controller="classifiedsCtrl">
+
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<p><strong>ngClassifieds</strong></p>
+
+			<md-button>
+				<md-icon class="mdi mdi-plus-circle"></md-icon>
+				New Classified
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-content="md-padding" layout="row" layout-wrap>
+		<md-card ng-repeat="classified in classifieds" flex="30">
+			<img ng-src="{{ classified.image }}">
+			<md-card-content>
+
+				<div class="classified-info" ng-show="!showContact">
+					<h2 class="md-title">{{ classified.title }}</h2> 
+					<h3>{{ classified.posted | date }} </h3>
+					<h3>{{ classified.price | currency }}</h3>
+					<p>{{ classified.description }}</p>
+				</div>
+
+				<div class="classified-contact" ng-show="showContact">
+					<p><md-icon class="mdi mdi-account"></md-icon>{{ classified.contact.name }}</p>
+					<p><md-icon class="mdi mdi-phone"></md-icon>{{ classified.contact.phone }}</p>
+					<p><md-icon class="mdi mdi-email"></md-icon>{{ classified.contact.email }}</p>
+				</div>
+
+				<div layout="row">
+
+					<md-button 
+						ng-click="showContact = true"
+						ng-show="!showContact">
+						Contact
+					</md-button>
+
+					<md-button 
+						ng-click="showContact = false"
+						ng-show="showContact">
+						Details
+					</md-button>
+
+					<md-button 
+						ng-click="showAdmin = true"
+						ng-show="!showAdmin">
+						Admin
+					</md-button>
+
+					<md-button 
+						ng-click="showAdmin = false"
+						ng-show="showAdmin">
+						Close
+					</md-button>
+		
+				</div> 
+
+				<div class="classified-admin" ng-if="showAdmin">
+					<h3>Admin</h3>
+					<div layout="row">
+						<md-button class="md-primary">Edit</md-button>
+						<md-button class="md-warn">Delete</md-button>
+				</div>
+
+		</md-card>
+	</md-content>
+
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-animate/angular-animate.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+	<script src="node_modules/angular-material/angular-material.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="components/classifieds.ctr.js"></script>
+</body>
+</html>
