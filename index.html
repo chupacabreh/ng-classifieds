@@ -40,6 +40,10 @@
 				</md-option>
 			</md-select>
 		</md-input-container>
+
+		<md-input-container>
+			<md-button class="md-warn" ng-click="classifiedsFilter = ''; category = '' ">Clear</md-button>
+		</md-input-container>
 	</div>
 
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
@@ -84,7 +88,10 @@
 	</md-sidenav>
 
 	<md-content="md-padding" layout="row" layout-wrap>
-		<md-card ng-repeat="classified in classifieds | filter: classifiedsFilter" flex="30">
+		<md-card ng-repeat="classified in classifieds | 
+							filter: classifiedsFilter |
+							filter: category"  
+							flex="30">
 			<img ng-src="{{ classified.image }}">
 			<md-card-content>
 

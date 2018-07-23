@@ -2,3 +2,6 @@ button .material-icons {
     margin-top: -15px
 }
 
+md-input-container .md-input {
+    width: auto;
+}
