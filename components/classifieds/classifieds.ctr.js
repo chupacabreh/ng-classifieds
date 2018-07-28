@@ -6,9 +6,23 @@
       .module("ngClassifieds")
       .controller("classifiedsCtrl", function($scope, $http, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog) {
 
+         var vm = this;
+
+         vm.openSideBar = openSideBar;
+         vm.closeSideBar = closeSideBar;
+         vm.saveClassified = saveClassified;
+         vm.editClassified = editClassified;
+         vm.saveClassified = saveClassified;
+         vm.deleteClassified = deleteClassified;
+
+         vm.classifieds;
+         vm.categories;
+         vm.editing;
+         vm.classified;
+
          classifiedsFactory.getClassifieds().then(function(classifieds) {
-             $scope.classifieds = classifieds.data;
-             $scope.categories = getCategories($scope.classifieds);
+             vm.classifieds = classifieds.data;
+             vm.categories = getCategories(vm.classifieds);
          });  
 
          var contact = {
@@ -17,18 +31,15 @@
              email: "matt@matttt.com"
          }
 
-         
-         
-
-         $scope.openSideBar = function() {
+         function openSideBar() {
              $mdSidenav('left').open();
          }
 
-         $scope.closeSideBar = function() {
+         function closeSideBar() {
              $mdSidenav('left').close();
          }
 
-         $scope.saveClassified = function(classified) {
+         function saveClassified(classified) {
              if(classified) {
                 classified.contact = contact;
                 $scope.classifieds.push(classified);
@@ -38,20 +49,20 @@
              }
          }
 
-         $scope.editClassified = function(classified) {
-             $scope.editing = true; 
-             $scope.openSideBar(); 
-             $scope.classified = classified; 
+         function editClassified(classified) {
+             vm.editing = true; 
+             openSideBar(); 
+             vm.classified = classified; 
          }
 
-         $scope.saveEdit = function() {
-             $scope.editing = false;
-             $scope.classified = {};
-             $scope.closeSideBar();
+         function saveEdit() {
+             vm.editing = false;
+             vm.classified = {};
+             closeSideBar();
              showToast("Edited!");
          }
 
-         $scope.deleteClassified = function(event, classified) {
+         function deleteClassified(event, classified) {
              var confirm = $mdDialog.confirm()
                 .title('Are you sure you want to delete ' + classified.title + '?')
                 .ok('Yes')
@@ -59,7 +70,7 @@
                 .targetEvent(event);
             $mdDialog.show(confirm).then(function() {
                 var index = $scope.classifieds.indexOf(classified);
-                $scope.classifieds.splice(index, 1);
+                vm.classifieds.splice(index, 1);
             }, function() {
                 
             }); 

@@ -22,6 +22,7 @@
     "angular-aria": "file:node_modules/angular-aria",
     "angular-material": "^1.1.10",
     "angular-messages": "^1.7.2",
+    "angular-ui-router": "^1.0.19",
     "mdi": "^2.2.43"
   }
 }
