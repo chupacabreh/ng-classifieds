@@ -4,7 +4,7 @@
   
     angular
       .module('ngClassifieds')
-      .controller('classifiedsController', function($scope, $mdToast, $mdSidenav, $mdDialog, $state, $stateParams, classifiedsFactory) {
+      .controller('classifiedsController', function($scope, $http, $mdToast, $mdSidenav, $mdDialog, $state, $stateParams, classifiedsFactory) {
   
         var vm = this;
   
@@ -13,12 +13,12 @@
         vm.deleteClassified = deleteClassified;
         vm.showSearchBar = false;
         vm.showFilters = false;
-  
-        classifiedsFactory.getClassifieds().then(function(data) {
-          vm.classifieds = data.data;
-          vm.categories = getCategories(vm.classifieds);
+
+        vm.classifieds = classifiedsFactory.ref;
+        vm.classifieds.$loaded().then(function(classifieds) {
+          vm.categories = getCategories(classifieds);
         });
-  
+
         $scope.$on('newClassified', function(event, data) {
           data.id = vm.classifieds.length + 1;
           vm.classifieds.push(data);
@@ -80,7 +80,7 @@
   
           return _.uniq(categories);
         }
+
   
       });
-  
   })();
