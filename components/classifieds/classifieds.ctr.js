@@ -19,9 +19,8 @@
           vm.categories = getCategories(classifieds);
         });
 
-        $scope.$on('newClassified', function(event, data) {
-          data.id = vm.classifieds.length + 1;
-          vm.classifieds.push(data);
+        $scope.$on('newClassified', function(event, classified) {
+          vm.classifieds.$add(classified);
           showToast('Classified Saved');
         });
   
